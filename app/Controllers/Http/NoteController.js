@@ -25,9 +25,8 @@ class NoteController {
     let notes = await Note
     .query()
     .where('user_id', user)
-    .groupBy('datetime')
     .fetch()
-    
+
     return notes
   }
 
