@@ -1,8 +1,6 @@
 'use strict'
 
 const Note = use('App/Models/Note')
-const Database = use('Database')
-
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
@@ -24,10 +22,11 @@ class NoteController {
 
     const { user } = params
 
-    let notes = await Database
-    .table('notes')
+    let notes = await Note
+    .query()
     .where('user_id', user)
     .groupBy('datetime')
+    .pluck('datetime')
 
     return notes
   }
