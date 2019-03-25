@@ -26,8 +26,9 @@ class NoteController {
     .query()
     .where('user_id', user)
     .groupBy('datetime')
+    .pluck('datetime')
     .fetch()
-    
+
     return notes
   }
 
