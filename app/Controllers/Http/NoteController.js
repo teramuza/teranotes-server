@@ -25,6 +25,7 @@ class NoteController {
     let notes = await Note
     .query()
     .where('user_id', user)
+    .orderBy('created_at', 'desc')
     .fetch()
 
     return notes
